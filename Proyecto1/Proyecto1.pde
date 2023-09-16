@@ -45,13 +45,13 @@ void setup() {
   crearConexiones();
 }
 void crearNodos() {
-  float[] coordenadasX = {255.0, 646.0, 959.0, 745.0, 246.0, 612.0};
-  float[] coordenadasY = {258.0, 566.0, 334.0, 165.0, 550.0, 355.0};
+  float[] coordenadasX = {255.0, 646.0, 959.0, 745.0, 246.0, 612.0, 1000.0};
+  float[] coordenadasY = {258.0, 566.0, 334.0, 165.0, 550.0, 355.0, 600.0};
 
   for (int i = 0; i < coordenadasX.length; i++) {
     float x = coordenadasX[i];
     float y = coordenadasY[i];
-    float alpha = random(0.1, 0.6); // Puedes ajustar el valor de alpha como desees
+    float alpha = random(0.1, 0.6);
     g.addNode(x, y, alpha);
   }
 }
@@ -62,21 +62,23 @@ void draw() {
 }
 
 void crearConexiones() {
-  // Conexiones desde el nodo 0
+  //Conexión nodo 0
   g.addConexion(g.getNodePos(0), g.getNodePos(3), 3);
   g.addConexion(g.getNodePos(0), g.getNodePos(4), 4);
   g.addConexion(g.getNodePos(0), g.getNodePos(1), 3);
 
-  // Conexiones desde el nodo 3
+  // Conexión nodo 3
   g.addConexion(g.getNodePos(3), g.getNodePos(5), 1);
   g.addConexion(g.getNodePos(3), g.getNodePos(2), 2);
 
-  // Conexión desde el nodo 2 al nodo 1
+  // Conexión nodo 2
   g.addConexion(g.getNodePos(2), g.getNodePos(1), 8);
+  g.addConexion(g.getNodePos(2), g.getNodePos(6), 8);
 
-  // Conexión desde el nodo 1 al nodo 4
+  // Conexión nodo 1
   g.addConexion(g.getNodePos(1), g.getNodePos(4), 8);
   g.addConexion(g.getNodePos(1), g.getNodePos(5), 2);
+  g.addConexion(g.getNodePos(1), g.getNodePos(6), 2);
 }
 
 void mousePressed() {

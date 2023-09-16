@@ -41,7 +41,6 @@ void display() {
   rotate(-angle); // Ajusta la rotación para que el texto siempre esté en un angulo correcto
   fill(0);
   String textToDisplay = "" + distance;
-  //textSize(16);
   float textWidthHalf = textWidth(textToDisplay) / 2;
   float textHeightHalf = textAscent() / 2;
   text(textToDisplay, 0 - textWidthHalf, 0 + textHeightHalf);
