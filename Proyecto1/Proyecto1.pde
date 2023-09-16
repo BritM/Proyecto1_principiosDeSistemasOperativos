@@ -152,13 +152,17 @@ void keyPressed() {
       input=0;
     }
   } else if (key == 'b' || key == 'B') {
-    int startNode = 0;
-    int endNode = g.nodeCount() - 1;
+    int startNode = int(random(0, g.nodeCount() - 1));
+    int endNode;
+
+    do {
+      endNode = int(random(0, g.nodeCount() - 1));
+    } while (endNode == startNode);
 
     // Le pone color al borde de los nodos destino y salida, azul y blanco respectivamente
     for (int i = 0; i < g.nodes.size(); i++) {
-      if (i==0) {
-        g.nodes.get(0).s = 255;
+      if (i==startNode) {
+        g.nodes.get(startNode).s = 255;
       } else if (i==endNode) {
         g.nodes.get(endNode).s = color(0, 0, 255);
       } else {
