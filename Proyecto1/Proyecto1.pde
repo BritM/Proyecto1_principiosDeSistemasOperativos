@@ -39,7 +39,7 @@ void setup() {
   
   textFont(createFont("arial",15));
      
-  
+  g.demo();
 }
 
 void draw() {
