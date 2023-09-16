@@ -81,4 +81,53 @@ class Graph {
     nodes.get(id).setLineColor(0);
   }
 
+  void demo(){
+    Node a = new Node(300, 300 ,0.1);
+    nodes.add(a);
+    
+    Node b = new Node(600, 300 ,0.2);
+    nodes.add(b);
+    
+    Node c = new Node(210, 500 ,0.3);
+    nodes.add(c);
+    
+    Node d = new Node(360, 710 ,0.4);
+    nodes.add(d);
+    
+    Node e = new Node(400, 500 ,0.5);
+    nodes.add(e);
+    
+    Node f = new Node(700, 600 ,0.6);
+    nodes.add(f);
+    
+    PVector pa = new PVector(300,300);
+    PVector pb = new PVector(600, 300);
+    PVector pc = new PVector(210, 500);
+    PVector pd = new PVector(360, 710);
+    PVector pe = new PVector(400, 500);
+    PVector pf = new PVector(700, 600);
+    
+    Conexion ca = new Conexion(pa,pb,2);
+    links.add(ca);
+    
+    Conexion cb = new Conexion(pa,pc,3);
+    links.add(cb);
+    
+    Conexion cc = new Conexion(pb,pf,3);
+    links.add(cc);
+
+    Conexion cd = new Conexion(pc,pd,1);
+    links.add(cd);
+    
+    Conexion ce = new Conexion(pd,pf,4);
+    links.add(ce);
+    
+    Conexion cf = new Conexion(pa,pe,2);
+    links.add(cf);
+    
+    Conexion cg = new Conexion(pe,pf,2);
+    links.add(cg);
+
+  }
+
 }
