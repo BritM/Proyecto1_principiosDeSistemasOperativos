@@ -95,6 +95,9 @@ void crearConexiones() {
 }
 
 void mousePressed() {
+  if (!isOff) {
+    return;
+  }
   boolean inBox = mouseX > 30 && mouseX < width-20 && mouseY > 132 && mouseY < height-38 ;
   if (mouseButton == LEFT  && inBox) {
     if (input == 0) {

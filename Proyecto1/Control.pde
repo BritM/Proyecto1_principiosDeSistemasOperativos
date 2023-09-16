@@ -4,9 +4,9 @@ String timeExecution = "0";
 Slider nVehiclesSlider;
 Button offButton, resetButton;
 Textlabel timerLabel, averageSpeedLabel;
-boolean isOff = false;
 ArrayList<PVector> boxCoordenates = new ArrayList<PVector>();
 color baseColor = color(#2590CC);
+boolean isOff = true;
 
 void Control() {
   // Sliders
@@ -27,11 +27,8 @@ void Control() {
   // Botones
   offButton = cp5.addButton("offButtonClicked")
     .setPosition(1157, 3)
-    .setSize(239, 45)
-    .setLabel("Detener Simulacion")
-    .setColorBackground(color(#791F39))
-    .setColorForeground(color(#AD2E35))
-    .setColorActive(color(#D95C45));
+    .setSize(239, 45);
+  offButtonClicked();
 
   resetButton = cp5.addButton("resetButtonClicked")
     .setPosition(1157, 51)
@@ -84,13 +81,27 @@ void makeBoxControl(int x, int y, color c) {
 }
 
 void offButtonClicked() {
-  isOff = true;
+  isOff = !isOff;
+  setColorOffButton();
 }
 
-
+void setColorOffButton() {
+  if (!isOff) {
+    offButton.setColorBackground(color(#2A4D73));
+    offButton.setColorForeground(color(#34608F));
+    offButton.setColorActive(color(#4B8ACF));
+    offButton.setLabel("Iniciar Simulacion");
+  } else {
+    offButton.setColorBackground(color(#791F39));
+    offButton.setColorForeground(color(#AD2E35));
+    offButton.setColorActive(color(#4B8ACF));
+    offButton.setLabel("Detener Simulacion");
+  }
+}
 void resetButtonClicked() {
   // Agregar el reinicio de variables y nodos
 
   startTime = millis();
   isOff = false;
+  offButtonClicked();
 }
