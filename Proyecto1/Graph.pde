@@ -18,7 +18,7 @@ class Graph {
     }
     for (int i = 0; i < nodes.size(); i++) {
       Node n = nodes.get(i);
-      n.display(i); 
+      n.display(i);
     }
   }
 

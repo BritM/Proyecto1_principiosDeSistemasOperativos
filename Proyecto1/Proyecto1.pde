@@ -20,22 +20,24 @@ void setup() {
   input = 0;
   g = new Graph();
 
+  PVector posText = new PVector(913, 2);
+  PVector sizeText = new PVector(239, 47);
+
+  //addCoordenate(3, 1);
   cp5.addTextfield("alpha")
-    .setPosition(700, 400)
-    .setSize(50, 20)
+    .setPosition(posText.x, posText.y)
+    .setSize((int)sizeText.x, (int)sizeText.y)
     .setFont(createFont("arial", 20))
     .setFocus(true)
-    .setColor(color(#FCFEFF))
-    ;
+    .setColor(color(#FCFEFF));
   cp5.get(Textfield.class, "alpha").hide();
 
   cp5.addTextfield("distance")
-    .setPosition(700, 400)
-    .setSize(50, 20)
+    .setPosition(posText.x, posText.y)
+    .setSize((int)sizeText.x, (int)sizeText.y)
     .setFont(createFont("arial", 20))
     .setFocus(true)
-    .setColor(color(#FCFEFF))
-    ;
+    .setColor(color(#FCFEFF));
   cp5.get(Textfield.class, "distance").hide();
 
   textFont(createFont("arial", 15));
@@ -59,10 +61,7 @@ void crearNodos() {
 
 void draw() {
   background(#456975);
-  rectMode(CORNER);
-  fill(0);
-  rect(0, 0, width, 24*4);
-  
+
   repaintBoxControl(boxCoordenates);
 
   if (!isOff) {
@@ -97,11 +96,10 @@ void crearConexiones() {
 
 void mousePressed() {
   boolean inBox = mouseX > 30 && mouseX < width-20 && mouseY > 132 && mouseY < height-38 ;
-  if (mouseButton == LEFT && inBox) {
+  if (mouseButton == LEFT  && inBox) {
     if (input == 0) {
       mx = mouseX;
       my = mouseY;
-      println(my, height);
       if (!g.isOnNode(mx, my)) {
         cp5.get(Textfield.class, "alpha").show();
         input = 1;
@@ -156,6 +154,7 @@ void keyPressed() {
   } else if (key == 'b' || key == 'B') {
     int startNode = 0;
     int endNode = g.nodeCount() - 1;
+
     // Le pone color al borde de los nodos destino y salida, azul y blanco respectivamente
     for (int i = 0; i < g.nodes.size(); i++) {
       if (i==0) {

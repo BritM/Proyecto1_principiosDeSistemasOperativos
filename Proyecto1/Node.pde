@@ -10,9 +10,8 @@ class Node {
     alpha = alph;
     selected = false;
     s =0;
-    
   }
-  
+
   void update() {
   }
 
@@ -23,16 +22,15 @@ class Node {
     strokeWeight(3);
     stroke(s);
     ellipseMode(CENTER);
-    textAlign(CENTER,CENTER);
+    textAlign(CENTER, CENTER);
     ellipse(0, 0, 70, 70);
     fill(0);
-    text("Nodo " + index, 0, -10); 
+    text("Nodo " + index, 0, -10);
     text(nf(alpha, 0, 2), 0, 10);
     popMatrix();
   }
-  
-  void setLineColor(color c){
+
+  void setLineColor(color c) {
     s =c;
   }
-
 }
