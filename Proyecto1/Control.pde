@@ -16,7 +16,7 @@ void Control() {
     .setValue(nVehicles)
     .setSize(124, 20)
     .setFont(createFont("arial", 15))
-    .setNumberOfTickMarks(19)
+    .setNumberOfTickMarks(49)
     .snapToTickMarks(true);
   addCoordenate(0, 0);
 
