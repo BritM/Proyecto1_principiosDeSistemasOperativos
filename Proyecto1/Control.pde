@@ -6,7 +6,7 @@ Button offButton, resetButton;
 Textlabel timerLabel, averageSpeedLabel;
 ArrayList<PVector> boxCoordenates = new ArrayList<PVector>();
 color baseColor = color(#2590CC);
-boolean isOff = true;
+boolean isOff = false;
 
 void Control() {
   // Sliders
@@ -86,7 +86,7 @@ void offButtonClicked() {
 }
 
 void setColorOffButton() {
-  if (!isOff) {
+  if (isOff) {
     offButton.setColorBackground(color(#2A4D73));
     offButton.setColorForeground(color(#34608F));
     offButton.setColorActive(color(#4B8ACF));
