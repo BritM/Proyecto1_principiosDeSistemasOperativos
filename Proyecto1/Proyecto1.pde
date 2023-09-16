@@ -40,6 +40,7 @@ void setup() {
 
   textFont(createFont("arial", 15));
 
+  Control();
   //g.demo();
   crearNodos();
   crearConexiones();
@@ -58,6 +59,19 @@ void crearNodos() {
 
 void draw() {
   background(#456975);
+  rectMode(CORNER);
+  fill(0);
+  rect(0, 0, width, 24*4);
+  
+  repaintBoxControl(boxCoordenates);
+
+  if (!isOff) {
+    elapsedTime = millis() - startTime;
+    timeExecution = String.format("%.2f", elapsedTime / 1000.0);
+    timerLabel.setText("TIEMPO DE SIMULACIoN: " + timeExecution);
+  }
+  nVehicles = (int) nVehiclesSlider.getValue();
+
   g.display();
 }
 
@@ -82,10 +96,12 @@ void crearConexiones() {
 }
 
 void mousePressed() {
-  if (mouseButton == LEFT) {
+  boolean inBox = mouseX > 30 && mouseX < width-20 && mouseY > 132 && mouseY < height-38 ;
+  if (mouseButton == LEFT && inBox) {
     if (input == 0) {
       mx = mouseX;
       my = mouseY;
+      println(my, height);
       if (!g.isOnNode(mx, my)) {
         cp5.get(Textfield.class, "alpha").show();
         input = 1;
@@ -201,7 +217,7 @@ void dijkstra(int startNode, int endNode) {
   }
 
   Collections.reverse(shortestPath);
-  
+
   // Imprime las información
   println("Camino más corto desde el nodo " + startNode + " al nodo " + endNode + ":");
   for (int i = 0; i < shortestPath.size() - 1; i++) {
