@@ -16,17 +16,18 @@ class Node {
   void update() {
   }
 
-  void display() {
+  void display(int index) {
     pushMatrix();
     translate(pos.x, pos.y);
-    fill(#00F4FF);
-    strokeWeight(1);
+    fill(#59B32D);
+    strokeWeight(3);
     stroke(s);
     ellipseMode(CENTER);
     textAlign(CENTER,CENTER);
-    ellipse(0, 0, 40, 40);
+    ellipse(0, 0, 70, 70);
     fill(0);
-    text(nf(alpha, 0, 2), 0,0);
+    text("Nodo " + index, 0, -10); 
+    text(nf(alpha, 0, 2), 0, 10);
     popMatrix();
   }
   
