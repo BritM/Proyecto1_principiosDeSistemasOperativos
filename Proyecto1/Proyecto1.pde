@@ -196,29 +196,42 @@ void keyPressed() {
         g.nodes.get(i).s = 0;
       }
     }
-    Car car = new Car();
+    /*Car car = new Car();
     car.path = dijkstra(startNode, endNode);
     cars.add(car);
-    println("path: " + cars.get(0).path);
+    println("path: " + cars.get(0).path);*/
   } else if (key == 'x' || key == 'X') {
-    Car car = new Car();
-    car.path = dijkstra(
+    ArrayList<Integer> route = dijkstra(
       0
       ,
-      3
+      2
       );
-    cars.add(car);
+    
+    println(route);
+    ArrayList<Node> stops = new ArrayList();
+    ArrayList<Conexion> paths = new ArrayList();
+    
+    for (int i : route){
+      stops.add(g.getNode(i));
+      println(g.getNode(i).pos);
+    }
+    println(stops.size());    
+    for (int j = 1; j < stops.size(); j++){
+      paths.add(g.getConexionByNodes(stops.get(j-1).pos, stops.get(j).pos));
+    }
+    println("create car");
+    g.addCar(paths,stops);
 
-    car = new Car();
+   /* car = new Car();
     car.path = dijkstra(
       3
       ,
       0
       );
-    cars.add(car);
+    cars.add(car);*/
   } else if (key == 'c' || key == 'C') {
     for (Car c : cars) {
-      c.onRoute = true;
+      //c.onRoute = true;
     }
     //cars.get(0).onRoute = true;
     //for (Conexion c: g.links){
@@ -286,6 +299,7 @@ ArrayList<Integer> dijkstra(int startNode, int endNode) {
   }
 
   println("Distancia total: " + distance[endNode]);
+  
   return shortestPath;
 }
 

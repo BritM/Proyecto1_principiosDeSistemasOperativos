@@ -1,6 +1,8 @@
 class Car {
   int ID;
   PVector pos;
+  
+  Car(){};
 
   Car(float x, float y, int pID) {
     pos = new PVector(x, y);
@@ -8,8 +10,8 @@ class Car {
   }
   
   void updatePos(float px, float py){
-    x = px;
-    y = py;
+    pos.x = px;
+    pos.y = py;
   }
   
   void display(){
@@ -17,3 +19,4 @@ class Car {
     ellipseMode(CENTER);
     ellipse(pos.x, pos.y, 40, 40);
   }
+}

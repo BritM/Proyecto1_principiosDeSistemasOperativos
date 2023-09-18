@@ -3,6 +3,7 @@ class Node {
   float alpha;
   boolean selected;
   color s;
+  Semaphore sema;
 
 
   Node(float x, float y, float alph) {
@@ -10,6 +11,7 @@ class Node {
     alpha = alph;
     selected = false;
     s =0;
+    sema = new Semaphore(1);
   }
 
   void update() {

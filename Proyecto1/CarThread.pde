@@ -13,16 +13,29 @@ class CarThread extends Thread{
   }
   
   public void run(){
+    println("in run");
     for (int i = 0; i < paths.size(); i++){
-      PVector currentPos = paths.get(i).start;
-      PVector targetPos = paths.get(i).end;
+      PVector currentPos = stops.get(i).pos.copy();
+      PVector targetPos = stops.get(i+1).pos.copy();
+      println(currentPos);
+      println(targetPos);
       PVector dir = new PVector(targetPos.x - currentPos.x, targetPos.y - currentPos.y);
+      boolean mag = false;
       
-      while (dir.mag()>0.0){
-        dir.normalize();
-        dir.mult(min(1, dir.mag()));
-        
-        car.updatePos(currentPos.x += dir.x, currentPos.y += dir.y);
+      while (mag == false){
+        dir = new PVector(targetPos.x - currentPos.x, targetPos.y - currentPos.y);
+        if (dir.mag() > 40.0){
+          dir.normalize();
+          dir.mult(min(0.05, dir.mag()));
+          
+          currentPos.x += dir.x;
+          currentPos.y += dir.y;
+          
+          car.updatePos(currentPos.x, currentPos.y);
+        }else{
+          mag = true;
+        }
+        delay(1);
       }
       
       Node nextNode = stops.get(i+1);
@@ -32,6 +45,7 @@ class CarThread extends Thread{
         } catch(InterruptedException e) {
             System.out.println("not acquired");
         }
+        
       
       
       car.updatePos(nextNode.pos.x, nextNode.pos.y);
@@ -46,7 +60,7 @@ class CarThread extends Thread{
       
 
       nextNode.sema.release();
- 
+      println("finished");
     }
   
   }
