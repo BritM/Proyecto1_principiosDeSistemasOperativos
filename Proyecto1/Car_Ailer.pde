@@ -1,8 +1,8 @@
-class Car {
+class Carro {
   ArrayList<Integer> path;
   boolean onRoute = false;
 
-  Car() {
+  Carro() {
     path = new ArrayList<Integer>();
   }
 
