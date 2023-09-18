@@ -26,12 +26,12 @@ void Control() {
 
   // Botones
   offButton = cp5.addButton("offButtonClicked")
-    .setPosition(1157, 3)
+    .setPosition(width - 243, 3)
     .setSize(239, 45);
   offButtonClicked();
 
   resetButton = cp5.addButton("resetButtonClicked")
-    .setPosition(1157, 51)
+    .setPosition(width - 243, 51)
     .setSize(239, 45)
     .setLabel("Reiniciar Simulacion")
     .setColorBackground(color(#247451))
@@ -44,7 +44,7 @@ void repaintBoxControl(ArrayList<PVector> boxCoordenates) {
   rectMode(CORNER);
   stroke(0);
   fill(0);
-  rect(0, 0, width, 24*4);
+  rect(0, 0, width, 98);
 
   // Bordes de botones
   rectMode(CORNER);

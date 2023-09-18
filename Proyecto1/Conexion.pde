@@ -3,6 +3,8 @@ class Conexion {
   PVector end;
   int distance;
 
+  Conexion() {
+  }
 
   Conexion(PVector n1, PVector n2, int n) {
     start = n1;
@@ -14,10 +16,34 @@ class Conexion {
   }
 
   void display() {
-    strokeWeight(14);
-    stroke(0); // Color de línea
-    line(start.x, start.y, end.x, end.y);
+    // Borde de carretera
+    strokeWeight(20);
     fill(0);
+    stroke(0);
+    line(start.x, start.y, end.x, end.y);
+
+    // Carretera
+    strokeWeight(14);
+    stroke(#76757D);
+    line(start.x, start.y, end.x, end.y);
+
+    // Marcas viales divisorias
+    boolean drawLine = true;
+    float laneMarkings = 12;
+    strokeWeight(2);
+    stroke(#E6EAE7);
+
+    for (float t = 0; t < dist(start.x, start.y, end.x, end.y); t += laneMarkings) {
+      if (drawLine) {
+        float x1 = lerp(start.x, end.x, t / dist(start.x, start.y, end.x, end.y));
+        float y1 = lerp(start.y, end.y, t / dist(start.x, start.y, end.x, end.y));
+        float x2 = lerp(start.x, end.x, (t + laneMarkings) / dist(start.x, start.y, end.x, end.y));
+        float y2 = lerp(start.y, end.y, (t + laneMarkings) / dist(start.x, start.y, end.x, end.y));
+        line(x1, y1, x2, y2);
+      }
+      drawLine = !drawLine;
+    }
+
     PVector a = start.copy();
     PVector b = end.copy();
     PVector t = (b.sub(a).div(2).add(a));

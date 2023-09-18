@@ -23,10 +23,10 @@ class Node {
     stroke(s);
     ellipseMode(CENTER);
     textAlign(CENTER, CENTER);
-    ellipse(0, 0, 70, 70);
+    ellipse(0, 0, 80, 80);
     fill(0);
-    text("Nodo " + index, 0, -10);
-    text(nf(alpha, 0, 2), 0, 10);
+    text("Nodo " + index, 0, -8);
+    text(nf(alpha, 0, 2), 0, 12);
     popMatrix();
   }
 
