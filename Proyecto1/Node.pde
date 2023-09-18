@@ -1,9 +1,11 @@
+import java.util.concurrent.Semaphore;
+
 class Node {
+  Semaphore sema;
   PVector pos;
   float alpha;
   boolean selected;
   color s;
-  boolean isOccupied;
 
 
   Node(float x, float y, float alph) {
@@ -11,6 +13,7 @@ class Node {
     alpha = alph;
     selected = false;
     s =0;
+    sema = new Semaphore(1);
   }
 
   void update() {
@@ -35,11 +38,4 @@ class Node {
     s =c;
   }
   
-  synchronized void setOccupied(boolean status){
-    isOccupied = status;
-  }
-  
-  boolean isOccupied(){
-    return isOccupied;
-  }
 }
