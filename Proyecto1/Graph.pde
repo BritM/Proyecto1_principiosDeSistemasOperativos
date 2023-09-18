@@ -1,10 +1,14 @@
 class Graph {
+  int IDCount;
   ArrayList<Node> nodes;
   ArrayList<Conexion> links;
+  ArrayList<Car> cars;
 
   Graph() {
     nodes = new ArrayList<Node>();
     links = new ArrayList<Conexion>();
+    cars = new ArrayList<Car>();
+    IDCount = 0;
   }
 
   void update() {
@@ -20,6 +24,10 @@ class Graph {
       Node n = nodes.get(i);
       n.display(i);
     }
+    
+    for (Car ca : cars){
+      ca.display();
+    }
   }
 
   void addNode(float x, float y, float alph) {
@@ -30,6 +38,15 @@ class Graph {
   void addConexion(PVector n1, PVector n2, int d) {
     Conexion a = new Conexion(n1, n2, d);
     links.add(a);
+  }
+  
+  void addCar(ArrayList<Conexion> paths, ArrayList<Node> stops){
+    PVector start = paths.get(0).start;
+    Car f1 = new Car(start.x,start.y,IDCount);
+    IDCount++;
+    CarThread thread_f1 = new CarThread(paths, stops, f1);
+    thread_f1.start();
+    
   }
 
   boolean isOnNode(float x, float y) {
