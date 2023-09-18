@@ -1,3 +1,5 @@
+import java.util.concurrent.Semaphore;
+
 class CarThread extends Thread{
   ArrayList<Conexion> paths;
   ArrayList<Node> stops;
@@ -25,15 +27,26 @@ class CarThread extends Thread{
       
       Node nextNode = stops.get(i+1);
       
-      if (nextNode.isOccupied()){
-          wait();
-      }
+      try {
+            nextNode.sema.acquire();
+        } catch(InterruptedException e) {
+            System.out.println("not acquired");
+        }
       
-      nextNode.setOccupied(true);
-      Thread.sleep(2000);
-      Car.updatePos(nextNode.pos.x, nextNode.pos.y);
-      nextNode.setOccupied(false);
-      notify();
+      
+      car.updatePos(nextNode.pos.x, nextNode.pos.y);
+      
+      try {
+            Thread.sleep(2000);
+        } catch(InterruptedException e) {
+            System.out.println("got interrupted!");
+        }
+        
+     
+      
+
+      nextNode.sema.release();
+ 
     }
   
   }
