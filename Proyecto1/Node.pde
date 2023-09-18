@@ -3,6 +3,7 @@ class Node {
   float alpha;
   boolean selected;
   color s;
+  boolean isOccupied;
 
 
   Node(float x, float y, float alph) {
@@ -32,5 +33,13 @@ class Node {
 
   void setLineColor(color c) {
     s =c;
+  }
+  
+  synchronized void setOccupied(boolean status){
+    isOccupied = status;
+  }
+  
+  boolean isOccupied(){
+    return isOccupied;
   }
 }
