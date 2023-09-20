@@ -201,7 +201,10 @@ void keyPressed() {
     cars.add(car);
     println("path: " + cars.get(0).path);*/
   } else if (key == 'x' || key == 'X') {
-    ArrayList<Integer> route = dijkstra(
+    
+     g.nodes.get(0).startTimer();
+    
+    /*ArrayList<Integer> route = g.dijkstra(
       0
       ,
       2
@@ -220,7 +223,7 @@ void keyPressed() {
       paths.add(g.getConexionByNodes(stops.get(j-1).pos, stops.get(j).pos));
     }
     println("create car");
-    g.addCar(paths,stops);
+    g.addCar(paths,stops);*/
 
    /* car = new Car();
     car.path = dijkstra(
@@ -242,66 +245,7 @@ void keyPressed() {
   }
 }
 
-ArrayList<Integer> dijkstra(int startNode, int endNode) {
-  int numNodes = g.nodes.size();
-  float[] distance = new float[numNodes];
-  int[] previousNode = new int[numNodes];
-  boolean[] visited = new boolean[numNodes];
 
-  // Inicializa las distancias como infinito y marca todos los nodos como no visitados
-  for (int i = 0; i < numNodes; i++) {
-    distance[i] = Float.POSITIVE_INFINITY;
-    previousNode[i] = -1;
-    visited[i] = false;
-  }
-
-  distance[startNode] = 0;
-
-
-  for (int i = 0; i < numNodes; i++) { // Encuentra el camino más corto
-    int minDistanceNode = -1;
-    for (int j = 0; j < numNodes; j++) { // Encuentra el nodo no visitado con la distancia mínima
-      if (!visited[j] && (minDistanceNode == -1 || distance[j] < distance[minDistanceNode])) {
-        minDistanceNode = j;
-      }
-    }
-
-    visited[minDistanceNode] = true;
-
-    // Actualiza las distancias de los nodos vecinos
-    for (int j = 0; j < numNodes; j++) {
-      if (!visited[j] && linksExist(minDistanceNode, j)) {
-        float edgeDistance = getEdgeDistance(minDistanceNode, j);
-        if (distance[minDistanceNode] + edgeDistance < distance[j]) {
-          distance[j] = distance[minDistanceNode] + edgeDistance;
-          previousNode[j] = minDistanceNode;
-        }
-      }
-    }
-  }
-
-  // Reconstruye el camino mínimo desde el nodo de inicio al nodo final
-  ArrayList<Integer> shortestPath = new ArrayList<Integer>();
-  int currentNode = endNode;
-  while (currentNode != -1) {
-    shortestPath.add(currentNode);
-    currentNode = previousNode[currentNode];
-  }
-
-  Collections.reverse(shortestPath);
-
-  // Imprime las información
-  println("Camino más corto desde el nodo " + startNode + " al nodo " + endNode + ":");
-  for (int i = 0; i < shortestPath.size() - 1; i++) {
-    int fromNode = shortestPath.get(i);
-    int toNode = shortestPath.get(i + 1);
-    println("Nodo " + fromNode + " a Nodo " + toNode);
-  }
-
-  println("Distancia total: " + distance[endNode]);
-  
-  return shortestPath;
-}
 
 boolean linksExist(int node1, int node2) {
   for (Conexion c : g.links) {

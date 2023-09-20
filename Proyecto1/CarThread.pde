@@ -13,31 +13,30 @@ class CarThread extends Thread{
   }
   
   public void run(){
-    println("in run");
     for (int i = 0; i < paths.size(); i++){
+      
       PVector currentPos = stops.get(i).pos.copy();
       PVector targetPos = stops.get(i+1).pos.copy();
-      println(currentPos);
-      println(targetPos);
+      
       PVector dir = new PVector(targetPos.x - currentPos.x, targetPos.y - currentPos.y);
       boolean mag = false;
-      
       while (mag == false){
+        
         dir = new PVector(targetPos.x - currentPos.x, targetPos.y - currentPos.y);
         if (dir.mag() > 40.0){
           dir.normalize();
-          dir.mult(min(0.05, dir.mag()));
+          dir.mult(min(1, dir.mag()));
           
           currentPos.x += dir.x;
           currentPos.y += dir.y;
-          
-          car.updatePos(currentPos.x, currentPos.y);
+          synchronized (car){
+            car.updatePos(currentPos.x, currentPos.y);
+          }
         }else{
           mag = true;
         }
         delay(1);
       }
-      
       Node nextNode = stops.get(i+1);
       
       try {
@@ -60,8 +59,9 @@ class CarThread extends Thread{
       
 
       nextNode.sema.release();
-      println("finished");
     }
+
+    car.finish();
   
   }
 

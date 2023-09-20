@@ -1,9 +1,12 @@
+import java.util.Timer;
+import java.util.TimerTask;
 class Node {
   PVector pos;
   float alpha;
   boolean selected;
   color s;
   Semaphore sema;
+  Timer timer;
 
 
   Node(float x, float y, float alph) {
@@ -12,6 +15,18 @@ class Node {
     selected = false;
     s =0;
     sema = new Semaphore(1);
+  }
+  
+  void startTimer(){
+    print("Before timer start");
+    timer = new Timer();
+    NodeThread task = new NodeThread(this);
+    timer.schedule(task, 0,  (long) (alpha*1000));
+    print("After Timer start");
+  }
+  
+  void stopTimer(){
+    timer.cancel();
   }
 
   void update() {
