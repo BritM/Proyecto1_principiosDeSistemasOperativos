@@ -197,42 +197,42 @@ void keyPressed() {
       }
     }
     /*Car car = new Car();
-    car.path = dijkstra(startNode, endNode);
-    cars.add(car);
-    println("path: " + cars.get(0).path);*/
+     car.path = dijkstra(startNode, endNode);
+     cars.add(car);
+     println("path: " + cars.get(0).path);*/
   } else if (key == 'x' || key == 'X') {
-    
-     g.nodes.get(0).startTimer();
-     g.nodes.get(6).startTimer();
-    
-    /*ArrayList<Integer> route = g.dijkstra(
-      0
-      ,
-      2
-      );
-    
-    println(route);
-    ArrayList<Node> stops = new ArrayList();
-    ArrayList<Conexion> paths = new ArrayList();
-    
-    for (int i : route){
-      stops.add(g.getNode(i));
-      println(g.getNode(i).pos);
-    }
-    println(stops.size());    
-    for (int j = 1; j < stops.size(); j++){
-      paths.add(g.getConexionByNodes(stops.get(j-1).pos, stops.get(j).pos));
-    }
-    println("create car");
-    g.addCar(paths,stops);*/
 
-   /* car = new Car();
-    car.path = dijkstra(
-      3
-      ,
-      0
-      );
-    cars.add(car);*/
+    g.nodes.get(0).startTimer();
+    g.nodes.get(6).startTimer();
+
+    /*ArrayList<Integer> route = g.dijkstra(
+     0
+     ,
+     2
+     );
+     
+     println(route);
+     ArrayList<Node> stops = new ArrayList();
+     ArrayList<Conexion> paths = new ArrayList();
+     
+     for (int i : route){
+     stops.add(g.getNode(i));
+     println(g.getNode(i).pos);
+     }
+     println(stops.size());
+     for (int j = 1; j < stops.size(); j++){
+     paths.add(g.getConexionByNodes(stops.get(j-1).pos, stops.get(j).pos));
+     }
+     println("create car");
+     g.addCar(paths,stops);*/
+
+    /* car = new Car();
+     car.path = dijkstra(
+     3
+     ,
+     0
+     );
+     cars.add(car);*/
   } else if (key == 'c' || key == 'C') {
     for (Car c : cars) {
       //c.onRoute = true;

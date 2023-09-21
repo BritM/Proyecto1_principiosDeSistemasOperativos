@@ -16,16 +16,15 @@ class Node {
     s =0;
     sema = new Semaphore(1);
   }
-  
-  void startTimer(){
-    print("Before timer start");
+
+  void startTimer() {
+
     timer = new Timer();
     NodeThread task = new NodeThread(this);
-    timer.schedule(task, 0,  (long) (alpha*1000));
-    print("After Timer start");
+    timer.schedule(task, 0, (long) (alpha*1000));
   }
-  
-   void stopTimer(){
+
+  void stopTimer() {
     timer.cancel();
     timer.purge();
   }

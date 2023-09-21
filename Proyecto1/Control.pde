@@ -83,23 +83,27 @@ void makeBoxControl(int x, int y, color c) {
 void offButtonClicked() {
   isOff = !isOff;
   setColorOffButton();
-    println("offButtonClicked");
-    delay(100);
-  if (!isOff){
-    for (Node n: g.nodes){
+  println("offButtonClicked");
+  if (!isOff) {
+    for (Node n : g.nodes) {
       n.startTimer();
     }
     println("on");
   } else {
-    for (Car c: cars){
-      c.finish();
-    }
-    cars = new ArrayList<Car>();
-    for (Node n: g.nodes){
+
+    for (Node n : g.nodes) {
       n.stopTimer();
     }
+
+    for (Car c : g.cars) {
+      c.finish();
+    }
+
+    g.cars = new ArrayList<Car>();
+
+
+
     println("0ff");
-    delay(100);
   }
 }
 

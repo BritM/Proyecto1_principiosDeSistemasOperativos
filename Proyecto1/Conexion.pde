@@ -14,8 +14,8 @@ class Conexion {
 
   void update() {
   }
-  
-  int getDistance(){
+
+  int getDistance() {
     return distance;
   }
 
