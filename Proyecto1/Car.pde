@@ -2,7 +2,8 @@ class Car {
   int ID;
   PVector pos;
   boolean done;
-
+  float speed;
+  
   Car() {
   };
 
@@ -10,6 +11,7 @@ class Car {
     pos = new PVector(x, y);
     ID = pID;
     done = false;
+    speed = 0.0;
   }
 
   void updatePos(float px, float py) {
@@ -18,9 +20,9 @@ class Car {
   }
 
   void display() {
-    fill(#F8FF4B);
+    fill(#821414);
     ellipseMode(CENTER);
-    ellipse(pos.x, pos.y, 40, 40);
+    ellipse(pos.x, pos.y, 26, 26);
   }
 
   void finish() {

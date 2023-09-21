@@ -18,7 +18,18 @@ class Graph {
 
   void update() {
   }
-
+  
+  float getAverageSpeed(){
+    if (cars.isEmpty()){
+      return 0;
+    }
+    float averageSpeed = 0;
+    for (Car c: cars){
+      averageSpeed += c.speed;
+    }
+    return averageSpeed / cars.size();
+  }
+  
   void removeNode(Node nodeToRemove) {
     Iterator<Conexion> linkIterator = links.iterator();
     while (linkIterator.hasNext()) {
@@ -96,7 +107,8 @@ class Graph {
   boolean isOnNode(float x, float y) {
     boolean res = false;
     for (Node n : nodes) {
-      if (dist(x, y, n.pos.x, n.pos.y) < 22) {
+      if (dist(x, y, n.pos.x, n.pos.y) < 90
+      ) {
         res = true;
       }
     }

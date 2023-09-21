@@ -35,7 +35,7 @@ class Node {
   void display(int index) {
     pushMatrix();
     translate(pos.x, pos.y);
-    fill(#59B32D);
+    fill(#377D22);
     strokeWeight(3);
     stroke(s);
     ellipseMode(CENTER);

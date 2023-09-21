@@ -33,19 +33,22 @@ class CarThread extends Thread {
       println(rounded);
       PVector dir = new PVector(targetPos.x - currentPos.x, targetPos.y - currentPos.y);
       boolean mag = false;
-      while (mag == false) {
 
+      while (mag == false) {
+        car.speed = 10;
         dir = new PVector(targetPos.x - currentPos.x, targetPos.y - currentPos.y);
 
         if (dir.mag() > 40.0) {
           dir.normalize();
           dir.mult(rounded);
-
+ 
+ //<>//
           currentPos.x += dir.x;
           currentPos.y += dir.y;
           synchronized (car) {
             car.updatePos(currentPos.x, currentPos.y);
           }
+    
         } else {
           mag = true;
         }
@@ -55,6 +58,7 @@ class CarThread extends Thread {
       Node nextNode = stops.get(i+1);
 
       try {
+        car.speed = 0;
         nextNode.sema.acquire();
       }
       catch(InterruptedException e) {
@@ -66,6 +70,7 @@ class CarThread extends Thread {
       car.updatePos(nextNode.pos.x, nextNode.pos.y);
 
       try {
+        car.speed = 0;
         Thread.sleep(2000);
       }
       catch(InterruptedException e) {
@@ -76,7 +81,6 @@ class CarThread extends Thread {
 
 
       nextNode.sema.release();
-
       println("estimated");
       println(estimatedTime);
       println(distanceR);

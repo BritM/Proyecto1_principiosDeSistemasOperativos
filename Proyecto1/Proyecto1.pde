@@ -16,7 +16,7 @@ int lineStart;
 ArrayList<Car> cars = new ArrayList<Car>();
 
 void setup() {
-  size(1200, 720);
+  size(1400, 800);
 
   cp5 = new ControlP5(this);
   input = 0;
@@ -65,7 +65,7 @@ void draw() {
     timeExecution = String.format("%.2f", elapsedTime / 1000.0);
     timerLabel.setText("TIEMPO DE SIMULACIoN: " + timeExecution);
     
-    averageSpeedLabel.setText("VELOCIDAD PROMEDIO: " + averageSpeed + " km/s");
+    averageSpeedLabel.setText("VELOCIDAD PROMEDIO: " + nf(g.getAverageSpeed(), 0, 1) + " km/s");
   }
   nVehicles = (int) nVehiclesSlider.getValue();
   g.display();
