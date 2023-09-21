@@ -98,22 +98,22 @@ void draw() {
 
 void crearConexiones() {
   //Conexión nodo 0
-  g.addConexion(g.getNodePos(0), g.getNodePos(3), 3);
-  g.addConexion(g.getNodePos(0), g.getNodePos(4), 4);
-  g.addConexion(g.getNodePos(0), g.getNodePos(1), 3);
+  g.addConexion(g.getNodePos(0), g.getNodePos(3), 10);
+  g.addConexion(g.getNodePos(0), g.getNodePos(4), 10);
+  g.addConexion(g.getNodePos(0), g.getNodePos(1), 10);
 
   // Conexión nodo 3
-  g.addConexion(g.getNodePos(3), g.getNodePos(5), 1);
-  g.addConexion(g.getNodePos(3), g.getNodePos(2), 2);
+  g.addConexion(g.getNodePos(3), g.getNodePos(5), 10);
+  g.addConexion(g.getNodePos(3), g.getNodePos(2), 10);
 
   // Conexión nodo 2
-  g.addConexion(g.getNodePos(2), g.getNodePos(1), 3);
-  g.addConexion(g.getNodePos(2), g.getNodePos(6), 5);
+  g.addConexion(g.getNodePos(2), g.getNodePos(1), 10);
+  g.addConexion(g.getNodePos(2), g.getNodePos(6), 10);
 
   // Conexión nodo 1
-  g.addConexion(g.getNodePos(1), g.getNodePos(4), 7);
-  g.addConexion(g.getNodePos(1), g.getNodePos(5), 2);
-  g.addConexion(g.getNodePos(1), g.getNodePos(6), 2);
+  g.addConexion(g.getNodePos(1), g.getNodePos(4), 10);
+  g.addConexion(g.getNodePos(1), g.getNodePos(5), 10);
+  g.addConexion(g.getNodePos(1), g.getNodePos(6), 10);
 }
 
 void mousePressed() {
@@ -203,6 +203,7 @@ void keyPressed() {
   } else if (key == 'x' || key == 'X') {
     
      g.nodes.get(0).startTimer();
+     g.nodes.get(6).startTimer();
     
     /*ArrayList<Integer> route = g.dijkstra(
       0

@@ -14,6 +14,10 @@ class Conexion {
 
   void update() {
   }
+  
+  int getDistance(){
+    return distance;
+  }
 
   void display() {
     // Borde de carretera

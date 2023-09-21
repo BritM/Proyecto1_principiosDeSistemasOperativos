@@ -25,8 +25,9 @@ class Node {
     print("After Timer start");
   }
   
-  void stopTimer(){
+   void stopTimer(){
     timer.cancel();
+    timer.purge();
   }
 
   void update() {

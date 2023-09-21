@@ -11,7 +11,9 @@ class NodeThread extends TimerTask{
   
   public void run(){
     println("spawning car");
-    g.spawnCar(node);
+    if (g.ncarros.tryAcquire()){
+      g.spawnCar(node);
+    }
   }
 
 }

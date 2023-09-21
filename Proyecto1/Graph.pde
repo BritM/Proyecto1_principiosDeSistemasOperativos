@@ -1,16 +1,19 @@
 //import random;
+import java.util.concurrent.Semaphore;
 import java.util.Iterator;
 class Graph {
   int IDCount;
   ArrayList<Node> nodes;
   ArrayList<Conexion> links;
   ArrayList<Car> cars;
+  Semaphore ncarros;
 
   Graph() {
     nodes = new ArrayList<Node>();
     links = new ArrayList<Conexion>();
     cars = new ArrayList<Car>();
     IDCount = 0;
+    ncarros = new Semaphore(20);
   }
 
   void update() {

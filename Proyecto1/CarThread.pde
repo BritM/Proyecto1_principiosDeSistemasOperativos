@@ -14,15 +14,18 @@ class CarThread extends Thread{
   
   public void run(){
     for (int i = 0; i < paths.size(); i++){
-      
+      int distanceR = paths.get(i).getDistance();
       PVector currentPos = stops.get(i).pos.copy();
       PVector targetPos = stops.get(i+1).pos.copy();
+      float distanceD = currentPos.dist(targetPos);
       
+      float speedD = distanceD * 0.1;
       PVector dir = new PVector(targetPos.x - currentPos.x, targetPos.y - currentPos.y);
       boolean mag = false;
       while (mag == false){
         
         dir = new PVector(targetPos.x - currentPos.x, targetPos.y - currentPos.y);
+        
         if (dir.mag() > 40.0){
           dir.normalize();
           dir.mult(min(1, dir.mag()));
@@ -62,7 +65,7 @@ class CarThread extends Thread{
     }
 
     car.finish();
-  
+    g.ncarros.release();
   }
 
 }
