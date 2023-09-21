@@ -24,12 +24,12 @@ class CarThread extends Thread {
       BigDecimal op1 = distanceR.multiply(  BigDecimal.valueOf  (0.017)  );
       BigDecimal op15 = BigDecimal.valueOf( 10 ).divide(distanceD, 4, BigDecimal.ROUND_HALF_UP);
       BigDecimal op2 = op1.multiply( op15);
-      
+
       BigDecimal op3 = op2.divide(BigDecimal.valueOf(10), 4, BigDecimal.ROUND_HALF_UP);
 
       BigDecimal speedD = op3;
       float rounded = speedD.setScale(4, RoundingMode.DOWN).floatValue();
-      
+
       println(rounded);
       PVector dir = new PVector(targetPos.x - currentPos.x, targetPos.y - currentPos.y);
       boolean mag = false;
@@ -76,7 +76,7 @@ class CarThread extends Thread {
 
 
       nextNode.sema.release();
-      
+
       println("estimated");
       println(estimatedTime);
       println(distanceR);

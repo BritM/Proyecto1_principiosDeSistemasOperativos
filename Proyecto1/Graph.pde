@@ -19,6 +19,18 @@ class Graph {
   void update() {
   }
 
+  void removeNode(Node nodeToRemove) {
+    Iterator<Conexion> linkIterator = links.iterator();
+    while (linkIterator.hasNext()) {
+      Conexion link = linkIterator.next();
+      if (link.start.equals(nodeToRemove.pos) || link.end.equals(nodeToRemove.pos)) {
+        linkIterator.remove();
+      }
+    }
+
+    nodes.remove(nodeToRemove);
+  }
+
   void display() {
     for (Conexion c : links) {
       c.display();
@@ -56,9 +68,17 @@ class Graph {
   }
 
   void addConexion(PVector n1, PVector n2, int d) {
+    for (Conexion existingConexion : links) {
+      if ((existingConexion.start.equals(n1) && existingConexion.end.equals(n2)) ||
+        (existingConexion.start.equals(n2) && existingConexion.end.equals(n1))) {
+        existingConexion.distance = d;
+        return;
+      }
+    }
     Conexion a = new Conexion(n1, n2, d);
     links.add(a);
   }
+
 
   void addCar(ArrayList<Conexion> paths, ArrayList<Node> stops) {
     PVector start = stops.get(0).pos.copy();
