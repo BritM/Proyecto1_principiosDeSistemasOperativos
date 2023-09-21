@@ -35,7 +35,6 @@ void Control() {
     .setPosition(width - 123, 51)
     .setSize(120, 45)
     .setLabel("Reiniciar Simulacion");
-  offButtonClicked();
 
   cleanGraph = cp5.addButton("cleanGraphClicked")
     .setPosition(width - 246, 3)
@@ -52,10 +51,15 @@ void Control() {
     .setColorBackground(color(#247451))
     .setColorForeground(color(#30AC58))
     .setColorActive(color(#5ADC70));
+
+
+  offButtonClicked();
 }
 
 void cleanGraphClicked() {
-  g = new Graph();
+  if (isOff) {
+    g = new Graph();
+  }
 }
 
 void dPrintConnections() {
@@ -99,87 +103,89 @@ void AUXgenerateRandmonButtonClicked(ArrayList<Float> coordenadasX, ArrayList<Fl
 }
 
 void generateRandmonButtonClicked() {
-  //dPrintNodes();
-  //println();
-  //dPrintConnections();
+  if (isOff) {
+    //dPrintNodes();
+    //println();
+    //dPrintConnections();
 
-  g = new Graph();
-  ArrayList<Float> coordenadasX;
-  ArrayList<Float> coordenadasY;
-  switch(int(random(4))) {
-  case 0:
-    coordenadasX = new ArrayList<Float>(Arrays.asList(255.0, 646.0, 959.0, 745.0, 246.0, 612.0, 1000.0));
-    coordenadasY = new ArrayList<Float>(Arrays.asList(258.0, 566.0, 334.0, 165.0, 550.0, 355.0, 600.0));
-    AUXgenerateRandmonButtonClicked(coordenadasX, coordenadasY);
+    g = new Graph();
+    ArrayList<Float> coordenadasX;
+    ArrayList<Float> coordenadasY;
+    switch(int(random(4))) {
+    case 0:
+      coordenadasX = new ArrayList<Float>(Arrays.asList(255.0, 646.0, 959.0, 745.0, 246.0, 612.0, 1000.0));
+      coordenadasY = new ArrayList<Float>(Arrays.asList(258.0, 566.0, 334.0, 165.0, 550.0, 355.0, 600.0));
+      AUXgenerateRandmonButtonClicked(coordenadasX, coordenadasY);
 
-    g.addConexion(g.getNodePos(0), g.getNodePos(3), (int) random(10, 200));
-    g.addConexion(g.getNodePos(0), g.getNodePos(4), (int) random(10, 200));
-    g.addConexion(g.getNodePos(0), g.getNodePos(1), (int) random(10, 200));
-    g.addConexion(g.getNodePos(3), g.getNodePos(5), (int) random(10, 200));
-    g.addConexion(g.getNodePos(3), g.getNodePos(2), (int) random(10, 200));
-    g.addConexion(g.getNodePos(2), g.getNodePos(1), (int) random(10, 200));
-    g.addConexion(g.getNodePos(2), g.getNodePos(6), (int) random(10, 200));
-    g.addConexion(g.getNodePos(1), g.getNodePos(4), (int) random(10, 200));
-    g.addConexion(g.getNodePos(1), g.getNodePos(5), (int) random(10, 200));
-    g.addConexion(g.getNodePos(1), g.getNodePos(6), (int) random(10, 200));
-    break;
-  case 1:
-    coordenadasX = new ArrayList<Float>(Arrays.asList(109.0, 144.0, 446.0, 839.0, 578.0, 937.0, 1079.0, 837.0, 687.0));
-    coordenadasY = new ArrayList<Float>(Arrays.asList(178.0, 451.0, 250.0, 417.0, 575.0, 180.0, 609.0, 678.0, 271.0));
-    AUXgenerateRandmonButtonClicked(coordenadasX, coordenadasY);
+      g.addConexion(g.getNodePos(0), g.getNodePos(3), (int) random(10, 200));
+      g.addConexion(g.getNodePos(0), g.getNodePos(4), (int) random(10, 200));
+      g.addConexion(g.getNodePos(0), g.getNodePos(1), (int) random(10, 200));
+      g.addConexion(g.getNodePos(3), g.getNodePos(5), (int) random(10, 200));
+      g.addConexion(g.getNodePos(3), g.getNodePos(2), (int) random(10, 200));
+      g.addConexion(g.getNodePos(2), g.getNodePos(1), (int) random(10, 200));
+      g.addConexion(g.getNodePos(2), g.getNodePos(6), (int) random(10, 200));
+      g.addConexion(g.getNodePos(1), g.getNodePos(4), (int) random(10, 200));
+      g.addConexion(g.getNodePos(1), g.getNodePos(5), (int) random(10, 200));
+      g.addConexion(g.getNodePos(1), g.getNodePos(6), (int) random(10, 200));
+      break;
+    case 1:
+      coordenadasX = new ArrayList<Float>(Arrays.asList(109.0, 144.0, 446.0, 839.0, 578.0, 937.0, 1079.0, 837.0, 687.0));
+      coordenadasY = new ArrayList<Float>(Arrays.asList(178.0, 451.0, 250.0, 417.0, 575.0, 180.0, 609.0, 678.0, 271.0));
+      AUXgenerateRandmonButtonClicked(coordenadasX, coordenadasY);
 
-    g.addConexion(g.getNodePos(1), g.getNodePos(2), (int) random(10, 200));
-    g.addConexion(g.getNodePos(0), g.getNodePos(1), (int) random(10, 200));
-    g.addConexion(g.getNodePos(0), g.getNodePos(5), (int) random(10, 200));
-    g.addConexion(g.getNodePos(4), g.getNodePos(2), (int) random(10, 200));
-    g.addConexion(g.getNodePos(8), g.getNodePos(2), (int) random(10, 200));
-    g.addConexion(g.getNodePos(1), g.getNodePos(4), (int) random(10, 200));
-    g.addConexion(g.getNodePos(4), g.getNodePos(3), (int) random(10, 200));
-    g.addConexion(g.getNodePos(6), g.getNodePos(5), (int) random(10, 200));
-    g.addConexion(g.getNodePos(3), g.getNodePos(7), (int) random(10, 200));
-    g.addConexion(g.getNodePos(7), g.getNodePos(6), (int) random(10, 200));
-    g.addConexion(g.getNodePos(8), g.getNodePos(3), (int) random(10, 200));
-    break;
-  case 2:
-    coordenadasX = new ArrayList<Float>(Arrays.asList(153.0, 757.0, 201.0, 513.0, 820.0, 532.0, 1095.0, 467.0));
-    coordenadasY = new ArrayList<Float>(Arrays.asList(202.0, 198.0, 563.0, 300.0, 472.0, 613.0, 276.0, 450.0));
-    AUXgenerateRandmonButtonClicked(coordenadasX, coordenadasY);
+      g.addConexion(g.getNodePos(1), g.getNodePos(2), (int) random(10, 200));
+      g.addConexion(g.getNodePos(0), g.getNodePos(1), (int) random(10, 200));
+      g.addConexion(g.getNodePos(0), g.getNodePos(5), (int) random(10, 200));
+      g.addConexion(g.getNodePos(4), g.getNodePos(2), (int) random(10, 200));
+      g.addConexion(g.getNodePos(8), g.getNodePos(2), (int) random(10, 200));
+      g.addConexion(g.getNodePos(1), g.getNodePos(4), (int) random(10, 200));
+      g.addConexion(g.getNodePos(4), g.getNodePos(3), (int) random(10, 200));
+      g.addConexion(g.getNodePos(6), g.getNodePos(5), (int) random(10, 200));
+      g.addConexion(g.getNodePos(3), g.getNodePos(7), (int) random(10, 200));
+      g.addConexion(g.getNodePos(7), g.getNodePos(6), (int) random(10, 200));
+      g.addConexion(g.getNodePos(8), g.getNodePos(3), (int) random(10, 200));
+      break;
+    case 2:
+      coordenadasX = new ArrayList<Float>(Arrays.asList(153.0, 757.0, 201.0, 513.0, 820.0, 532.0, 1095.0, 467.0));
+      coordenadasY = new ArrayList<Float>(Arrays.asList(202.0, 198.0, 563.0, 300.0, 472.0, 613.0, 276.0, 450.0));
+      AUXgenerateRandmonButtonClicked(coordenadasX, coordenadasY);
 
-    g.addConexion(g.getNodePos(1), g.getNodePos(4), (int) random(10, 200));
-    g.addConexion(g.getNodePos(1), g.getNodePos(6), (int) random(10, 200));
-    g.addConexion(g.getNodePos(3), g.getNodePos(4), (int) random(10, 200));
-    g.addConexion(g.getNodePos(5), g.getNodePos(4), (int) random(10, 200));
-    g.addConexion(g.getNodePos(4), g.getNodePos(6), (int) random(10, 200));
-    g.addConexion(g.getNodePos(5), g.getNodePos(2), (int) random(10, 200));
-    g.addConexion(g.getNodePos(0), g.getNodePos(2), (int) random(10, 200));
-    g.addConexion(g.getNodePos(3), g.getNodePos(0), (int) random(10, 200));
-    g.addConexion(g.getNodePos(0), g.getNodePos(1), (int) random(10, 200));
-    g.addConexion(g.getNodePos(7), g.getNodePos(5), (int) random(10, 200));
-    g.addConexion(g.getNodePos(7), g.getNodePos(4), (int) random(10, 200));
-    break;
-  case 3:
-    coordenadasX = new ArrayList<Float>(Arrays.asList(290.0, 280.0, 859.0, 709.0, 653.0, 517.0, 914.0, 137.0, 484.0, 1089.0, 1077.0));
-    coordenadasY = new ArrayList<Float>(Arrays.asList(255.0, 619.0, 413.0, 222.0, 613.0, 408.0, 231.0, 426.0, 155.0, 450.0, 646.0));
-    AUXgenerateRandmonButtonClicked(coordenadasX, coordenadasY);
+      g.addConexion(g.getNodePos(1), g.getNodePos(4), (int) random(10, 200));
+      g.addConexion(g.getNodePos(1), g.getNodePos(6), (int) random(10, 200));
+      g.addConexion(g.getNodePos(3), g.getNodePos(4), (int) random(10, 200));
+      g.addConexion(g.getNodePos(5), g.getNodePos(4), (int) random(10, 200));
+      g.addConexion(g.getNodePos(4), g.getNodePos(6), (int) random(10, 200));
+      g.addConexion(g.getNodePos(5), g.getNodePos(2), (int) random(10, 200));
+      g.addConexion(g.getNodePos(0), g.getNodePos(2), (int) random(10, 200));
+      g.addConexion(g.getNodePos(3), g.getNodePos(0), (int) random(10, 200));
+      g.addConexion(g.getNodePos(0), g.getNodePos(1), (int) random(10, 200));
+      g.addConexion(g.getNodePos(7), g.getNodePos(5), (int) random(10, 200));
+      g.addConexion(g.getNodePos(7), g.getNodePos(4), (int) random(10, 200));
+      break;
+    case 3:
+      coordenadasX = new ArrayList<Float>(Arrays.asList(290.0, 280.0, 859.0, 709.0, 653.0, 517.0, 914.0, 137.0, 484.0, 1089.0, 1077.0));
+      coordenadasY = new ArrayList<Float>(Arrays.asList(255.0, 619.0, 413.0, 222.0, 613.0, 408.0, 231.0, 426.0, 155.0, 450.0, 646.0));
+      AUXgenerateRandmonButtonClicked(coordenadasX, coordenadasY);
 
-    g.addConexion(g.getNodePos(0), g.getNodePos(5), (int) random(10, 200));
-    g.addConexion(g.getNodePos(3), g.getNodePos(5), (int) random(10, 200));
-    g.addConexion(g.getNodePos(4), g.getNodePos(2), (int) random(10, 200));
-    g.addConexion(g.getNodePos(1), g.getNodePos(5), (int) random(10, 200));
-    g.addConexion(g.getNodePos(3), g.getNodePos(4), (int) random(10, 200));
-    g.addConexion(g.getNodePos(7), g.getNodePos(5), (int) random(10, 200));
-    g.addConexion(g.getNodePos(7), g.getNodePos(1), (int) random(10, 200));
-    g.addConexion(g.getNodePos(0), g.getNodePos(8), (int) random(10, 200));
-    g.addConexion(g.getNodePos(8), g.getNodePos(5), (int) random(10, 200));
-    g.addConexion(g.getNodePos(8), g.getNodePos(3), (int) random(10, 200));
-    g.addConexion(g.getNodePos(3), g.getNodePos(6), (int) random(10, 200));
-    g.addConexion(g.getNodePos(1), g.getNodePos(4), (int) random(10, 200));
-    g.addConexion(g.getNodePos(6), g.getNodePos(9), (int) random(10, 200));
-    g.addConexion(g.getNodePos(2), g.getNodePos(3), (int) random(10, 200));
-    g.addConexion(g.getNodePos(9), g.getNodePos(10), (int) random(10, 200));
-    g.addConexion(g.getNodePos(4), g.getNodePos(9), (int) random(10, 200));
-    g.addConexion(g.getNodePos(10), g.getNodePos(4), (int) random(10, 200));
-    break;
+      g.addConexion(g.getNodePos(0), g.getNodePos(5), (int) random(10, 200));
+      g.addConexion(g.getNodePos(3), g.getNodePos(5), (int) random(10, 200));
+      g.addConexion(g.getNodePos(4), g.getNodePos(2), (int) random(10, 200));
+      g.addConexion(g.getNodePos(1), g.getNodePos(5), (int) random(10, 200));
+      g.addConexion(g.getNodePos(3), g.getNodePos(4), (int) random(10, 200));
+      g.addConexion(g.getNodePos(7), g.getNodePos(5), (int) random(10, 200));
+      g.addConexion(g.getNodePos(7), g.getNodePos(1), (int) random(10, 200));
+      g.addConexion(g.getNodePos(0), g.getNodePos(8), (int) random(10, 200));
+      g.addConexion(g.getNodePos(8), g.getNodePos(5), (int) random(10, 200));
+      g.addConexion(g.getNodePos(8), g.getNodePos(3), (int) random(10, 200));
+      g.addConexion(g.getNodePos(3), g.getNodePos(6), (int) random(10, 200));
+      g.addConexion(g.getNodePos(1), g.getNodePos(4), (int) random(10, 200));
+      g.addConexion(g.getNodePos(6), g.getNodePos(9), (int) random(10, 200));
+      g.addConexion(g.getNodePos(2), g.getNodePos(3), (int) random(10, 200));
+      g.addConexion(g.getNodePos(9), g.getNodePos(10), (int) random(10, 200));
+      g.addConexion(g.getNodePos(4), g.getNodePos(9), (int) random(10, 200));
+      g.addConexion(g.getNodePos(10), g.getNodePos(4), (int) random(10, 200));
+      break;
+    }
   }
 }
 
@@ -247,24 +253,40 @@ void offButtonClicked() {
 }
 
 void setColorOffButton() {
+  color c = color(#5C5C5C);
   if (isOff) {
     offButton.setColorBackground(color(#002D5A));
     offButton.setColorForeground(color(#34608F));
     offButton.setColorActive(color(#4B8ACF));
     offButton.setLabel("Iniciar Simulacion");
-    
-    resetButton.setColorBackground(color(#5C5C5C));
-    resetButton.setColorForeground(color(#5C5C5C));
-    resetButton.setColorActive(color(#5C5C5C));
+
+    resetButton.setColorBackground(c);
+    resetButton.setColorForeground(c);
+    resetButton.setColorActive(c);
+
+    cleanGraph.setColorBackground(color(#247451));
+    cleanGraph.setColorForeground(color(#30AC58));
+    cleanGraph.setColorActive(color(#5ADC70));
+    generateRandmonButton.setColorBackground(color(#247451));
+    generateRandmonButton.setColorForeground(color(#30AC58));
+    generateRandmonButton.setColorActive(color(#5ADC70));
   } else {
     offButton.setColorBackground(color(#791F39));
     offButton.setColorForeground(color(#AD2E35));
     offButton.setColorActive(color(#4B8ACF));
     offButton.setLabel("Detener Simulacion");
-    
+
     resetButton.setColorBackground(color(#002D5A));
     resetButton.setColorForeground(color(#34608F));
     resetButton.setColorActive(color(#4B8ACF));
+
+    cleanGraph.setColorBackground(c);
+    cleanGraph.setColorForeground(c);
+    cleanGraph.setColorActive(c);
+
+    generateRandmonButton.setColorBackground(c);
+    generateRandmonButton.setColorForeground(c);
+    generateRandmonButton.setColorActive(c);
   }
 }
 void resetButtonClicked() {
