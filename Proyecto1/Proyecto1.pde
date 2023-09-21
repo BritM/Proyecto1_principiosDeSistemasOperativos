@@ -64,6 +64,8 @@ void draw() {
     elapsedTime = millis() - startTime;
     timeExecution = String.format("%.2f", elapsedTime / 1000.0);
     timerLabel.setText("TIEMPO DE SIMULACIoN: " + timeExecution);
+    
+    averageSpeedLabel.setText("VELOCIDAD PROMEDIO: " + averageSpeed + " km/s");
   }
   nVehicles = (int) nVehiclesSlider.getValue();
   g.display();
@@ -151,7 +153,7 @@ void keyPressed() {
       g.addConexion(n1, n2, d);
       input=0;
       awaitingInput = false;
-    }
+    } 
   }
 }
 
