@@ -1,4 +1,4 @@
-//import random; //<>//
+//import random; //<>// //<>//
 import java.util.concurrent.Semaphore;
 import java.util.Iterator;
 class Graph {
@@ -13,7 +13,7 @@ class Graph {
     links = new ArrayList<Conexion>();
     cars = new ArrayList<Car>();
     IDCount = 0;
-    ncarros = new Semaphore(1);
+    ncarros = new Semaphore(nVehicles);
   }
 
   void update() {
@@ -43,6 +43,8 @@ class Graph {
   }
 
   void display() {
+    
+    
     for (Conexion c : links) {
       c.display();
     }
@@ -51,18 +53,6 @@ class Graph {
       n.display(i);
     }
 
-    /*for (Car ca : cars){
-     ca.display();
-     }*/
-    /*Iterator<Car> itr = cars.iterator();
-     while (itr.hasNext()) {
-     Car ca = itr.next();
-     if (ca.isDone()) {
-     itr.remove();
-     }else{
-     ca.display();
-     }
-     }*/
 
     for (int j = 0; j < cars.size(); j++) {
       if (cars.get(j).isDone()) {
@@ -93,7 +83,7 @@ class Graph {
 
   void addCar(ArrayList<Conexion> paths, ArrayList<Node> stops) {
     PVector start = stops.get(0).pos.copy();
-    println(start);
+
     Car f1 = new Car(start.x, start.y, IDCount);
     synchronized (cars) {
       cars.add(f1);
@@ -209,14 +199,14 @@ class Graph {
     Collections.reverse(shortestPath);
 
     // Imprime las información
-    println("Camino más corto desde el nodo " + startNode + " al nodo " + endNode + ":");
+    //println("Camino más corto desde el nodo " + startNode + " al nodo " + endNode + ":");
     for (int i = 0; i < shortestPath.size() - 1; i++) {
       int fromNode = shortestPath.get(i);
       int toNode = shortestPath.get(i + 1);
-      println("Nodo " + fromNode + " a Nodo " + toNode);
+      //println("Nodo " + fromNode + " a Nodo " + toNode);
     }
 
-    println("Distancia total: " + distance[endNode]);
+    //println("Distancia total: " + distance[endNode]);
 
     return shortestPath;
   }
@@ -270,7 +260,7 @@ class Graph {
     for (int i : route) {
       stops.add(getNode(i));
     }
-    println(stops.size());
+    //println(stops.size());
     for (int j = 1; j < stops.size(); j++) {
       paths.add(getConexionByNodes(stops.get(j-1).pos, stops.get(j).pos));
     }

@@ -255,6 +255,18 @@ void offButtonClicked() {
 void setColorOffButton() {
   color c = color(#5C5C5C);
   if (isOff) {
+    
+    for (Node n : g.nodes) {
+      n.stopTimer();
+    }
+
+    for (Car ca : g.cars) {
+      ca.finish();
+    }
+
+    g.cars = new ArrayList<Car>();
+    g.ncarros = new Semaphore(nVehicles);
+    
     offButton.setColorBackground(color(#002D5A));
     offButton.setColorForeground(color(#34608F));
     offButton.setColorActive(color(#4B8ACF));
@@ -271,6 +283,7 @@ void setColorOffButton() {
     generateRandmonButton.setColorForeground(color(#30AC58));
     generateRandmonButton.setColorActive(color(#5ADC70));
   } else {
+    
     offButton.setColorBackground(color(#791F39));
     offButton.setColorForeground(color(#AD2E35));
     offButton.setColorActive(color(#4B8ACF));
@@ -301,6 +314,7 @@ void resetButtonClicked() {
     }
 
     g.cars = new ArrayList<Car>();
+    g.ncarros = new Semaphore(nVehicles);
     for (Node n : g.nodes) {
       n.startTimer();
     }
