@@ -64,10 +64,13 @@ void draw() {
     elapsedTime = millis() - startTime;
     timeExecution = String.format("%.2f", elapsedTime / 1000.0);
     timerLabel.setText("TIEMPO DE SIMULACIoN: " + timeExecution);
-    
+
     averageSpeedLabel.setText("VELOCIDAD PROMEDIO: " + nf(g.getAverageSpeed(), 0, 1) + " km/s");
   }
   nVehicles = (int) nVehiclesSlider.getValue();
+  if (isOff) {
+    g.ncarros = new Semaphore(nVehicles);
+  }
   g.display();
   if (awaitingInput) {
     fill(#453979, 200);
@@ -153,34 +156,6 @@ void keyPressed() {
       g.addConexion(n1, n2, d);
       input=0;
       awaitingInput = false;
-    } 
-  }
-}
-
-
-
-boolean linksExist(int node1, int node2) {
-  for (Conexion c : g.links) {
-    PVector start = c.start;
-    PVector end = c.end;
-    int node1ID = g.getNodeID(start);
-    int node2ID = g.getNodeID(end);
-    if ((node1ID == node1 && node2ID == node2) || (node1ID == node2 && node2ID == node1)) {
-      return true;
     }
   }
-  return false;
-}
-
-float getEdgeDistance(int node1, int node2) {
-  for (Conexion c : g.links) {
-    PVector start = c.start;
-    PVector end = c.end;
-    int node1ID = g.getNodeID(start);
-    int node2ID = g.getNodeID(end);
-    if ((node1ID == node1 && node2ID == node2) || (node1ID == node2 && node2ID == node1)) {
-      return c.distance;
-    }
-  }
-  return Float.POSITIVE_INFINITY;
 }

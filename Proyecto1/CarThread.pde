@@ -76,10 +76,7 @@ class CarThread extends Thread {
       catch(InterruptedException e) {
         System.out.println("got interrupted!");
       }
-
-
-
-
+      
       nextNode.sema.release();
       println("estimated");
       println(estimatedTime);

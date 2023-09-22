@@ -3,7 +3,7 @@ class Car {
   PVector pos;
   boolean done;
   float speed;
-  
+
   Car() {
   };
 

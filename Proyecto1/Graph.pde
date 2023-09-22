@@ -13,23 +13,23 @@ class Graph {
     links = new ArrayList<Conexion>();
     cars = new ArrayList<Car>();
     IDCount = 0;
-    ncarros = new Semaphore(20);
+    ncarros = new Semaphore(1);
   }
 
   void update() {
   }
-  
-  float getAverageSpeed(){
-    if (cars.isEmpty()){
+
+  float getAverageSpeed() {
+    if (cars.isEmpty()) {
       return 0;
     }
     float averageSpeed = 0;
-    for (Car c: cars){
+    for (Car c : cars) {
       averageSpeed += c.speed;
     }
     return averageSpeed / cars.size();
   }
-  
+
   void removeNode(Node nodeToRemove) {
     Iterator<Conexion> linkIterator = links.iterator();
     while (linkIterator.hasNext()) {
@@ -108,7 +108,7 @@ class Graph {
     boolean res = false;
     for (Node n : nodes) {
       if (dist(x, y, n.pos.x, n.pos.y) < 90
-      ) {
+        ) {
         res = true;
       }
     }
@@ -221,6 +221,32 @@ class Graph {
     return shortestPath;
   }
 
+  boolean linksExist(int node1, int node2) {
+    for (Conexion c : g.links) {
+      PVector start = c.start;
+      PVector end = c.end;
+      int node1ID = g.getNodeID(start);
+      int node2ID = g.getNodeID(end);
+      if ((node1ID == node1 && node2ID == node2) || (node1ID == node2 && node2ID == node1)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  float getEdgeDistance(int node1, int node2) {
+    for (Conexion c : g.links) {
+      PVector start = c.start;
+      PVector end = c.end;
+      int node1ID = g.getNodeID(start);
+      int node2ID = g.getNodeID(end);
+      if ((node1ID == node1 && node2ID == node2) || (node1ID == node2 && node2ID == node1)) {
+        return c.distance;
+      }
+    }
+    return Float.POSITIVE_INFINITY;
+  }
+
   void spawnCar(Node node) {
 
     ArrayList<Integer> possible_choices = new ArrayList<>();
@@ -250,9 +276,6 @@ class Graph {
     }
     addCar(paths, stops);
   }
-
-
-
 
   int nodeCount() {
     return nodes.size();
